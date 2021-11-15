@@ -37,12 +37,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites', # new
     
     # Locale 
     'posts', # new
     
     # 3rd-party apps
     'rest_framework', # new
+    'rest_framework.authtoken', # new
+    'dj_rest_auth', # new
+    'allauth', # new
+    'allauth.account', # new
+    'allauth.socialaccount', # new
+    'dj_rest_auth.registration', # new
 ]
 
 MIDDLEWARE = [
@@ -134,5 +141,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
 'DEFAULT_PERMISSION_CLASSES': [
 'rest_framework.permissions.IsAuthenticated',
-]
+],
+'DEFAULT_AUTHENTICATION_CLASSES': [ # new
+'rest_framework.authentication.SessionAuthentication',
+'rest_framework.authentication.TokenAuthentication', # new
+],
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' # new
+SITE_ID = 1 # new
